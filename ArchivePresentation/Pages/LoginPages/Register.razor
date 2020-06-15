@@ -1,0 +1,97 @@
+﻿@page "/register"
+@inherits Authentication
+
+<link href="css/auth.css" rel="stylesheet" />
+<div class="main-Signup">
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <EditForm action="" Model="@User" id="signup-form" method="post"
+                           OnSubmit="HandleSubmit"
+                          >
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <h2 class="form-title">Create Account</h2>
+
+                    <div class="form-group">
+                        <input type="text"
+                               @bind-value="User.Username"
+                               class="form-input"
+                               id="Name"
+                               name="Name"
+                               placeholder="Your Name" />
+                        <ValidationMessage For="@(() => User.Username)" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email"
+                               @bind-value="User.Email"
+                               class="form-input"
+                               id="Email" name="Email"
+                               placeholder="Your Email" />
+                        <ValidationMessage For="@(() => User.Email)" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password"
+                               @bind-value="User.Password"
+                               class="form-input"
+                               id="Password"
+                               name="Password"
+                               placeholder="Password" />
+                        <ValidationMessage For="@(() => User.Password)" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password"
+                               @bind-value="User.ConfirmPassword"
+                               class="form-input"
+                               id="Re_password"
+                               name="Re_password"
+                               placeholder="Repeat your password" />
+                        <ValidationMessage For="@(() => User.ConfirmPassword)" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="form-submit" name="submit" id="submit" value="Sign-up" />
+                    </div>
+                </EditForm>
+
+                <p class="loginhere">
+                    Have already an account ?  <a href="login" class="loginhere-link">Login here</a>
+                </p>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+@code{
+    protected void HandleValidSubmit(EditContext editContext)
+    {
+        bool formIsValid = editContext.Validate();
+        if (formIsValid)
+            RegisterUser(User);
+    }
+
+    protected void HandleInvalidSubmit(EditContext editContext)
+    {
+
+        // StatusClass = "alert-danger";
+        //  StatusMessage = DateTime.Now + " Handle invalid submit";
+    }
+
+    protected void HandleSubmit(EditContext editContext)
+    {
+        bool isValid = editContext.Validate();
+        if (isValid)
+        {
+           // ...
+        }
+        else
+        {
+           // ...
+        }
+
+    }
+}

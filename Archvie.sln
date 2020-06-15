@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveApi", "ArchiveApi\ArchiveApi.csproj", "{5B703A89-DBDE-48C2-A883-845C53814BC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchiveApi", "ArchiveApi\ArchiveApi.csproj", "{5B703A89-DBDE-48C2-A883-845C53814BC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchivePresentation", "ArchivePresentation\ArchivePresentation.csproj", "{FBC3CB35-9860-4207-8E92-7C57FE807518}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchivePresentation", "ArchivePresentation\ArchivePresentation.csproj", "{FBC3CB35-9860-4207-8E92-7C57FE807518}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Core", "1 Core", "{B855DB96-B052-4AB0-8657-E7B7A54F945A}"
 EndProject
@@ -17,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Distribution", "4 Distrib
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 Presentation", "5 Presentation", "{E4B1A665-FA5E-484C-AB8E-1A62D07B9B5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveData", "ArchiveData\ArchiveData.csproj", "{10266577-0FEB-41B6-8D52-215109A388F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchiveData", "ArchiveData\ArchiveData.csproj", "{10266577-0FEB-41B6-8D52-215109A388F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveServices", "ArchiveServices\ArchiveServices.csproj", "{DE0E0490-87AE-4508-8996-8DF7443BE6B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchiveServices", "ArchiveServices\ArchiveServices.csproj", "{DE0E0490-87AE-4508-8996-8DF7443BE6B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveCore", "ArchiveCore\ArchiveCore.csproj", "{0E4AAEB4-8765-4F37-9B6D-CC2B863572CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchiveCore", "ArchiveCore\ArchiveCore.csproj", "{0E4AAEB4-8765-4F37-9B6D-CC2B863572CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveSecurity", "ArchiveSecurity\ArchiveSecurity.csproj", "{804224BE-BCE5-4CA4-91D3-23F75AFA3E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchiveSecurity", "ArchiveSecurity\ArchiveSecurity.csproj", "{804224BE-BCE5-4CA4-91D3-23F75AFA3E03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

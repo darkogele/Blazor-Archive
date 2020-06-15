@@ -47,6 +47,17 @@ namespace ArchiveSecurity.Implementation
         {
             var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
+            var duplicateName = await _userManager.FindByNameAsync(userForRegisterDto.Username);
+
+            var duplicateEmail = await _userManager.FindByEmailAsync(userForRegisterDto.Email);
+
+            if (duplicateName != null )        
+                return new UserForDetailedDto { Username = "DUPLICATE" };
+                       
+
+            if (duplicateEmail != null)           
+                return new UserForDetailedDto { Email = "DUPLICATE" };
+            
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
 
             var userToReturn = _mapper.Map<UserForDetailedDto>(userToCreate);

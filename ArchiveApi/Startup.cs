@@ -89,6 +89,7 @@ namespace ArchiveApi
             services.AddAutoMapper(typeof(Authentication));
             services.AddScoped<IAuthentication, Authentication>();
             services.TryAddSingleton<ISystemClock, SystemClock>();
+            services.AddScoped<IUsers, Users>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

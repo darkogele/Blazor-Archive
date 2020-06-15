@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-using ArchiveCore.DTO;
-using ArchiveData.Models;
+﻿using ArchiveCore.DTO;
 using ArchiveSecurity.Contracts;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Threading.Tasks;
 
 namespace ArchiveApi.Controllers
 {
@@ -30,6 +22,19 @@ namespace ArchiveApi.Controllers
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             var result = await _authentication.Register(userForRegisterDto);
+            if (result.Username.Equals("DUPLICATE"))
+            {
+                ModelState.AddModelError("username", "An account with username already exists");
+                return BadRequest(ModelState);
+            }
+              
+            if (result.Email.Equals("DUPLICATE"))
+            {
+                ModelState.AddModelError("email", "An account with this email already exists");
+                return BadRequest(ModelState);
+            }
+               
+
             if (result != null)
                 return Ok("Log in with your new account ");
 
