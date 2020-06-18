@@ -5,26 +5,50 @@
 <div class="main-Signup">
     <section class="signup">
         <div class="container">
+
+            @if (UserForDetailed.Username != null)
+            {
+                <div>
+                    eve go go IMeto da go ebam <h2>@UserForDetailed.Username</h2>
+                </div>
+
+            }
             <div class="signup-content">
-                <form action="" id="signup-form" method="post">
+                <EditForm action="" Model="UserForLogin" id="signup-form" method="post" OnSubmit="HandleSubmit">
                     <h2 class="form-title">Login to Account</h2>
 
+                    <div class="form-group">
+                        <input type="text"
+                               @bind="UserForLogin.Username"
+                               class="form-input"
+                               id="Name"
+                               name="Name"
+                               placeholder="Your Username" />
+                    </div>
+
+                    @*IF we use Login with Email*@
                     @*<div class="form-group">
-                        <input type="text" class="form-input" id="Name" name="Name" placeholder="Your Name" />
-                    </div>*@
+                            <input type="email"
+                                   @bind="UserForLogin.Email"
+                                   class="form-input"
+                                   id="Email"
+                                   name="Email"
+                                   placeholder="Your Email" />
+                        </div>*@
 
                     <div class="form-group">
-                        <input type="email" class="form-input" id="Email" name="Email" placeholder="Your Email" />
+                        <input type="password"
+                               @bind="UserForLogin.Password"
+                               class="form-input"
+                               id="Password"
+                               name="Password"
+                               placeholder="Password" />
                     </div>
 
-                    <div class="form-group">
-                        <input type="password" class="form-input" id="Password" name="Password" placeholder="Password" />
-                    </div>
-                  
                     <div class="form-group">
                         <input type="submit" class="form-submit" name="submit" id="submit-in" value="Sign-in" />
                     </div>
-                </form>
+                </EditForm>
 
                 <p class="loginhere">
                     Dont have an account ?  <a href="register" class="loginhere-link">Register here</a>
@@ -34,3 +58,20 @@
         </div>
     </section>
 </div>
+
+@code{
+    protected async Task HandleSubmit(EditContext editContext)
+    {
+        bool isValid = editContext.Validate();
+        // var responce = "";
+        if (isValid)
+        {
+            var result = await LoginUser(UserForLogin);
+        }
+        else
+        {
+            // ...
+        }
+        //return responce;
+    }
+}

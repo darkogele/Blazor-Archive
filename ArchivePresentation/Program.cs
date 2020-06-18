@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ArchivePresentation.Services.Contract;
 using ArchivePresentation.Services;
+using Blazored.LocalStorage;
 
 namespace ArchivePresentation
 {
@@ -20,9 +21,12 @@ namespace ArchivePresentation
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-          
+
             builder.Services.AddHttpClient<IUserService, UserService>(client =>
-                     client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
+                     client.BaseAddress = new Uri("https://localhost:5001/"));
+
+            builder.Services.AddBlazoredLocalStorage(config =>
+                     config.JsonSerializerOptions.WriteIndented = true);
 
             await builder.Build().RunAsync();
         }

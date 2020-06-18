@@ -77,14 +77,16 @@ namespace ArchiveApi.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error Retriving Data");
-            }            
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var result = await _users.GetUserss();
-            return Ok(result);
+            var result = await _users.GetUsers();
+            if (result.Any())
+                return Ok(result);
+            return NotFound();
         }
     }
 }

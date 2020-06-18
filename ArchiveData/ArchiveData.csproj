@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -8,6 +8,10 @@
 		<Compile Remove="Migrations\20200611153248_UsersAdd.Designer.cs" />
 		<Compile Remove="Migrations\20200611153830_UsersAdd.cs" />
 		<Compile Remove="Migrations\20200611153830_UsersAdd.Designer.cs" />
+		<Compile Remove="Migrations\20200616130252_Initial2.cs" />
+		<Compile Remove="Migrations\20200616130252_Initial2.Designer.cs" />
+		<Compile Remove="Migrations\20200616130339_Initial2.cs" />
+		<Compile Remove="Migrations\20200616130339_Initial2.Designer.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -23,6 +27,8 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.5" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.5" />
 		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
 	</ItemGroup>
 </Project>

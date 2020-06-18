@@ -24,7 +24,7 @@ namespace ArchiveApi.Controllers
             var result = await _authentication.Register(userForRegisterDto);
             if (result.Username.Equals("DUPLICATE"))
             {
-                ModelState.AddModelError("username", "An account with username already exists");
+                ModelState.AddModelError("username", "An account with this username already exists");
                 return BadRequest(ModelState);
             }
               
@@ -34,7 +34,6 @@ namespace ArchiveApi.Controllers
                 return BadRequest(ModelState);
             }
                
-
             if (result != null)
                 return Ok("Log in with your new account ");
 
@@ -47,7 +46,7 @@ namespace ArchiveApi.Controllers
             var result = await _authentication.Login(userForLoginDto);
             if (result != null)
             {
-                return Ok(new { token = await _authentication.GenerateJwtToken(result) });
+                return Ok(result);
             };
 
             return Unauthorized();

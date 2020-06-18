@@ -2,7 +2,7 @@
 using ArchiveData.Models;
 using AutoMapper;
 
-namespace ArchiveApi.Helpers
+namespace ArchiveSecurity.Helpers
 {
     public class AutoMapperProfiles : Profile
     {

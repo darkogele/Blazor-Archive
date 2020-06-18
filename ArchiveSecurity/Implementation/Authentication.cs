@@ -3,15 +3,14 @@ using ArchiveData.Models;
 using ArchiveSecurity.Contracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ArchiveSecurity.Implementation
 {
@@ -20,24 +19,36 @@ namespace ArchiveSecurity.Implementation
         private readonly UserManager<User> _userManager;
         private readonly IMapper _mapper;
         private readonly SignInManager<User> _signInManager;
+
         private readonly IConfiguration _config;
-        public Authentication(IConfiguration config, UserManager<User> userManager, IMapper mapper, SignInManager<User> signInManager)
+        public Authentication(IConfiguration config, UserManager<User> userManager, IMapper mapper,
+            SignInManager<User> signInManager)
         {
             _config = config;
             _userManager = userManager;
             _mapper = mapper;
             _signInManager = signInManager;
+
         }
 
 
-        public async Task<User> Login(UserForLoginDto userForLoginDto)
+        public async Task<UserForDetailedDto> Login(UserForLoginDto userForLoginDto)
         {
             var user = await _userManager.FindByNameAsync(userForLoginDto.Username);
-            var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
-
-            if (result.Succeeded)
+            if (user != null)
             {
-                return user;
+                var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
+
+                if (result.Succeeded)
+                {
+                    user.LastActive = DateTime.Now;
+                    await _userManager.UpdateAsync(user);
+                    var token = await GenerateJwtToken(user);
+                    var userToReturn = _mapper.Map<UserForDetailedDto>(user);
+                    userToReturn.Token = token;
+                    
+                    return userToReturn;
+                }
             }
 
             return null;
@@ -51,13 +62,12 @@ namespace ArchiveSecurity.Implementation
 
             var duplicateEmail = await _userManager.FindByEmailAsync(userForRegisterDto.Email);
 
-            if (duplicateName != null )        
+            if (duplicateName != null)
                 return new UserForDetailedDto { Username = "DUPLICATE" };
-                       
 
-            if (duplicateEmail != null)           
-                return new UserForDetailedDto { Email = "DUPLICATE" };
-            
+            if (duplicateEmail != null)
+                return new UserForDetailedDto { Username = "", Email = "DUPLICATE" };
+
             var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
 
             var userToReturn = _mapper.Map<UserForDetailedDto>(userToCreate);

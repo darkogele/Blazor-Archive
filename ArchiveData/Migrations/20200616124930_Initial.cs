@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ArchiveData.Migrations
 {
-    public partial class UsersAdd : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,11 @@ namespace ArchiveData.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Country = table.Column<string>(nullable: true),
+                    Age = table.Column<int>(nullable: false),
+                    LastActive = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

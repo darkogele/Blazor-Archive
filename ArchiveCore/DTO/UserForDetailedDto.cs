@@ -11,5 +11,6 @@ namespace ArchiveCore.DTO
         public DateTime LastActive { get; set; }
         public string Country { get; set; }
         public string Email { get; set; }
+        public string Token { get; set; }
     }
 }

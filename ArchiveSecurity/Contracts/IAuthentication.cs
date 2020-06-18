@@ -11,7 +11,7 @@ namespace ArchiveSecurity.Contracts
     public interface IAuthentication
     {
         Task<UserForDetailedDto> Register(UserForRegisterDto userForRegisterDto);
-        Task<User> Login(UserForLoginDto userForLoginDto);
+        Task<UserForDetailedDto> Login(UserForLoginDto userForLoginDto);
         Task<string> GenerateJwtToken(User user);
     }
 }

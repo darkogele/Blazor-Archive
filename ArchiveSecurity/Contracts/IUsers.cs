@@ -10,7 +10,7 @@ namespace ArchiveSecurity.Contracts
 {
     public interface IUsers
     {
-        Task<IEnumerable<User>> GetUserss();
+        Task<IEnumerable<UserForDetailedDto>> GetUsers();
         Task<User> GetUserById(Guid id);
         Task<IdentityResult> UpdateUser(UserForUpdateDto userForUpdateDto);
         Task<IdentityResult> DeleteUser(User user);

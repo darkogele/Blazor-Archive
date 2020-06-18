@@ -6,6 +6,8 @@ namespace ArchiveCore.DTO
     public class UserForUpdateDto
     {
         public Guid Id { get; set; }
+
+        [StringLength(20, MinimumLength = 4, ErrorMessage = "You must specify password between 4 and 20 characters")]
         public string Username { get; set; }
 
         [StringLength(20, MinimumLength = 4, ErrorMessage = "You must specify password between 4 and 20 characters")]
@@ -18,6 +20,7 @@ namespace ArchiveCore.DTO
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
         public string City { get; set; }

@@ -1,6 +1,6 @@
 ﻿using ArchiveCore.DTO;
 using ArchiveData.Models;
-using ArchiveData.Repository;
+using ArchiveData.DbContext;
 using ArchiveSecurity.Contracts;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -35,9 +35,9 @@ namespace ArchiveSecurity.Implementation
             return await _context.Users.FindAsync(id);  //Where(x => x.Id == id).FirstOrDefaultAsync(); 
         }
 
-        public async Task<IEnumerable<User>> GetUserss()
+        public async Task<IEnumerable<UserForDetailedDto>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return _mapper.Map<IEnumerable<UserForDetailedDto>>(await _context.Users.ToListAsync());
         }
 
         public async Task<IEnumerable<User>> Search(string username, string email)

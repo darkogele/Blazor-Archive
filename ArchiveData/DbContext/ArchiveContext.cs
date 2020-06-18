@@ -6,13 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ArchiveData.Repository
+namespace ArchiveData.DbContext
 {
     public class ArchiveContext : IdentityDbContext<User, Role, Guid,
         IdentityUserClaim<Guid>, UserRole, IdentityUserLogin<Guid>, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
     {
-        public ArchiveContext(DbContextOptions options) : base(options) { }
-
+        public ArchiveContext(DbContextOptions<ArchiveContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -31,7 +30,7 @@ namespace ArchiveData.Repository
                     .WithMany(r => r.UserRoles)
                     .HasForeignKey(r => r.RoleId)
                     .IsRequired();
-            });
+            });         
         }
     }
 }
